@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+  id INT PRIMARY KEY,
+  FIRST_NAME VARCHAR(250) NOT NULL,
+  LAST_NAME VARCHAR(250) NOT NULL,
+  EMAIL VARCHAR(250) NOT NULL
+);
+
+INSERT INTO users (ID, FIRST_NAME, LAST_NAME, EMAIL) VALUES
+  (1, 'Zone A', 'Desk 1', '1-Jan-2022'),
+  (2, 'Zone B', 'Desk 2', '1-Jan-2022'),
+  (3, 'Zone C', 'Desk 3', '1-Jan-2022');
