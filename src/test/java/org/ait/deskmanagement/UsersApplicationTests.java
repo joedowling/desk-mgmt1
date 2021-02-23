@@ -1,4 +1,4 @@
-package com.bbtutorials.users;
+package org.ait.deskmanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
