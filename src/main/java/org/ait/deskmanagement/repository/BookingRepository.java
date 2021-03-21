@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
-    @Query(value = "select id, startTime, endTime , desk_id, from bookings", nativeQuery = true)
+    @Query(value = "select id, startTime, endTime , desk_id from bookings", nativeQuery = true)
     Set<Desk> findAllDesksNative ();
 }

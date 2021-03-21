@@ -26,7 +26,7 @@ public class Zone {
 
     @Column
     private String name;
-    
+
     @OneToMany(mappedBy = "zone", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Desk> desks;
 

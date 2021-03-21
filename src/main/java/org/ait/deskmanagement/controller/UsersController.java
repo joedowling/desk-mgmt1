@@ -6,6 +6,7 @@ import org.ait.deskmanagement.links.ResourceLinks;
 import org.ait.deskmanagement.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +27,7 @@ public class UsersController {
         return ResponseEntity.ok(resource);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = ResourceLinks.ADD_USER)
     public ResponseEntity<?> saveUser (@RequestBody final Users user) {
         //log.info("UsersController:  list users");

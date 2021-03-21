@@ -13,6 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+//SELECT b.id,b.start_time,z.name, d.name , (select first_name from users where id = b.id ) as username FROM BOOKINGS b
+//        left join desks d on b.desk_id =d.id
+//        left join zones z on d.zone_id = z.id
+
 @Entity
 @Table(name = "bookings")
 public class Booking {
@@ -30,6 +34,11 @@ public class Booking {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "desk_id", nullable = false)
     private Desk desk;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "users_id", nullable = false)
+    private Users users;
 
     public Booking () {
     }
@@ -65,6 +74,14 @@ public class Booking {
     public void setDesk (final Desk desk) {
         this.desk = desk;
     }
+
+//    public Users getUser () {
+//        return users;
+//    }
+//
+//    public void setUser (final Users user) {
+//        users = users;
+//    }
 
     @Override
     public boolean equals (final Object o) {

@@ -1,9 +1,32 @@
 import React from 'react'
+import Form from 'react-bootstrap/Form';
+import DatePicker from 'react-datetime';
 
+import 'react-datetime/css/react-datetime.css';
 
-const CreateUser = ({onChangeForm, createUser }) => {
+const CreateUser = ({user, onChangeForm, createUser, zones, desks, bookings }) => {
 
+        const zones1 = /*getAllZones()*/
+        [
+          'America',
+          'India',
+          'Australia',
+          'Argentina',
+          'Ireland',
+          'Indonesia',
+          'Iceland',
+          'Japan'
+        ]
 
+        let inputProps = {
+            name:"date",
+            placeholder:"Date"
+        };
+
+        console.log("desks:", desks)
+        console.log("bookings:", bookings)
+        console.log("user:", user)
+      
     return(
         <div className="container">
             <div className="row">
@@ -12,22 +35,35 @@ const CreateUser = ({onChangeForm, createUser }) => {
                 <form>
                     <div className="row">
                         <div className="form-group col-md-6">
-                            <label htmlFor="exampleInputEmail1">Zone</label>
-                            <input type="text" onChange={(e) => onChangeForm(e)} className="form-control" name="firstname" id="firstname" aria-describedby="emailHelp" placeholder="Zone" />
+                            <Form.Group controlId="exampleForm.SelectZone">
+                                <Form.Label>Zone</Form.Label>
+                                <Form.Control className="form-control" as="select" custom onChange={(e) => onChangeForm(e)} name="zone" placeholder="Zone">
+                                    {zones.map(response => <option key={response.id} value={response.name}> {response.name} </option>)}
+                                </Form.Control>
+                            </Form.Group>
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="exampleInputPassword1">Desk Number</label>
-                            <input type="text" onChange={(e) => onChangeForm(e)} className="form-control" name="lastname" id="lastname" placeholder="Desk Number" />
+                            <Form.Group controlId="exampleForm.SelectDesk">
+                                <Form.Label>Desk</Form.Label>
+                                <Form.Control className="form-control" as="select" custom onChange={(e) => onChangeForm(e)} name="desk" placeholder="Desk">
+                                    {desks.map(response => <option key={response.id} value={response.name}> {response.name} </option>)}
+                                </Form.Control>
+                            </Form.Group>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="form-group col-md-12">
-                            <label htmlFor="exampleInputEmail1">Date</label>
-                            <input type="text" onChange={(e) => onChangeForm(e)} className="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Date" />
-                        </div>
-                    </div>
-                    <button type="button" onClick= {(e) => createUser()} className="btn btn-danger">Reserve</button>
                 </form>
+                        <div className="form-group col-md-12">
+                            <label>Start Date</label>
+                            <DatePicker 
+                                inputProps={inputProps}
+                                value={user.email}
+                                dateFormat="MMMM Do YYYY"
+                                timeFormat="hh:mm:ss a"
+                                onChange={e => onChangeForm(e)}
+                            />
+                        </div>
+                    <button type="button" onClick= {(e) => createUser()} className="btn btn-danger">Reserve</button>
+
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react'
+import moment, { isMoment, now } from 'moment';
 
 export const Users = ({users}) => {
 
@@ -7,12 +8,19 @@ export const Users = ({users}) => {
 
     const UserRow = (user,index) => {
 
+        var dateString = user.email;
+        var dateObj = new Date(dateString);
+        var momentObj = moment(dateObj);
+        if (momentObj < moment().startOf('day') || !momentObj.isValid()) return;
+        var momentString = momentObj.format('MMMM Do YYYY, h:mm:ss a'); 
+
+
         return(
               <tr key = {index} className={index%2 === 0?'odd':'even'}>
                   <td>{index + 1}</td>
                   <td>{user.firstName}</td>
                   <td>{user.lastName}</td>
-                  <td>{user.email}</td>
+                  <td>{momentString}</td>
               </tr>
           )
     }

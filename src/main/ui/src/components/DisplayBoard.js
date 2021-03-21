@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const DisplayBoard = ({numberOfUsers, getAllUsers}) => {
-    
+
     return(
         <div className="display-board">
             <h4>Reservations Created</h4>

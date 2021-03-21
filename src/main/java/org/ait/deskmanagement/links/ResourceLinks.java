@@ -12,6 +12,7 @@ public class ResourceLinks {
     public static final String ADD_ZONE = "/zone";
 
     public static final String LIST_DESKS = "/desks";
+    public static final String LIST_DESKSBOOKINGS = "/desksbookings";
     public static final String ADD_DESK = "/desk";
 
     public static final String LIST_BOOKINGS = "/bookings";

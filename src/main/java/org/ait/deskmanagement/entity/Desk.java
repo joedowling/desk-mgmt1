@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ColumnResult;
+import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,9 +14,36 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.SqlResultSetMappings;
 import javax.persistence.Table;
+import org.ait.deskmanagement.models.DeskModel;
 
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "getAllDesks",
+                query = "select * from desks",
+                resultSetMapping = "allDesk")
+})
+
+@SqlResultSetMappings({
+        @SqlResultSetMapping(
+                name = "allDesk",
+                classes = {
+                        @ConstructorResult(
+                                targetClass = DeskModel.class,
+                                columns = {
+                                        @ColumnResult(name = "id", type = Long.class),
+                                        @ColumnResult(name = "name", type = String.class),
+                                        @ColumnResult(name = "zone_id", type = Long.class),
+
+                                }
+                        )
+                }
+        )
+})
 
 @Entity
 @Table(name = "desks")
@@ -32,7 +61,6 @@ public class Desk {
     @JoinColumn(name = "zone_id", nullable = false)
     private Zone zone;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "desk", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Booking> bookings;
 

@@ -1,15 +1,21 @@
 package org.ait.deskmanagement.entity;
 
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Users {
 
     @Id
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
@@ -23,6 +29,9 @@ public class Users {
     @Column
     @NotNull(message = "{NotNull.User.email}")
     private String email;
+
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Booking> bookings;
 
     public Users () {
     }
@@ -57,5 +66,13 @@ public class Users {
 
     public void setEmail (final String email) {
         this.email = email;
+    }
+
+    public Set<Booking> getBookings () {
+        return bookings;
+    }
+
+    public void setBookings (final Set<Booking> bookings) {
+        this.bookings = bookings;
     }
 }
