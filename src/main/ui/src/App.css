@@ -1,15 +1,18 @@
-
+body{
+	background-color: #E6E6FA;
+	}
 .header {
   width: 100%;
   padding: 2%;
-  background-color: burlywood;
+  background-color: #46b05a;
+  border: 5px outset red;
   color: white;
   text-align: center;
 }
 
 .display-board {
   width: 100%;
-  background-color: rgb(555, 200, 789);
+  background-color: #79848a;
   padding: 5%;
 }
 
